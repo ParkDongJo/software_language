@@ -1,0 +1,10 @@
+.DS_Store
+
+## 함수형 js
+functional_javascript/basic/node_modules
+
+
+## 코틀린
+kotlin/Basic/.idea
+kotlin/Basic/out
+
