@@ -123,6 +123,8 @@ fun main(args: Array<String>) {
     // value의 객체가 재정렬 되도록 하자!!
     // 이러한 특징은 Heap 정렬이나, 또는 우선순위 큐에도 이용할 수 있을것이다
 
+    // 근데 절대!! key는 불변하는 값이여만 한다.
+
 }
 
 class Node {
