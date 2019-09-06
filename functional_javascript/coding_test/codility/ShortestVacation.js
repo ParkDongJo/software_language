@@ -1,5 +1,5 @@
 /**
- * [문제 본문]
+ * [4 문제 본문]
  */
 /*
     You want to spend your next vacation in a foreign country. In the summer

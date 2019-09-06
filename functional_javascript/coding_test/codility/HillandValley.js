@@ -1,5 +1,5 @@
 /**
- * [문제 본문]
+ * [2 문제 본문]
  */
 
  /*
@@ -82,6 +82,5 @@ function solution(A) {
 console.log(solution([2,2,3,4,3,3,2,2,1,1,2,5]))
 console.log(solution([-3,-3]))
 console.log(solution([-3,1,2,2,1,-3]))
-
 
 

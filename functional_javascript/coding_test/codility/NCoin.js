@@ -1,5 +1,5 @@
 /**
- * [문제 본문]
+ * [1 문제 본문]
  */
 /*
     There are N coins, each showing either heads or tails. We would like all the
