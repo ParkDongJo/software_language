@@ -62,6 +62,140 @@
     6. 문제를 제출 전에 복사해 두자
 */
 
+function solution(A) {
+    let schedule = A;
+    let lastVisitDays = new Array(A.length).fill(0);
+    let locationCnt = 0;
+    let visited = new Set();
+
+    for (let i=0; i<schedule.length; i++) {
+        lastVisitDays[schedule[i]] = i;
+    }
+
+    for (let i=0; i<lastVisitDays.length; i++) {
+        if (lastVisitDays[i] != 0) {
+            locationCnt++;
+        }
+    }
+
+    let min = A.length;
+    let count = 0;
+    for(let start=0; start<schedule.length; start++) {
+        count = 0;
+        for (let cursor=start; cursor<schedule.length; cursor++) {
+            count++;
+            if (!visited.has(schedule[cursor])) {
+                visited.add(schedule[cursor]);
+            }
+    
+            if (visited.size == locationCnt) {
+                visited = new Set();
+                min = Math.min(min, count);
+                break;
+            }
+        }
+    }
+    return min;
+}
+
+function solutionAtype(A) {
+    let schedule = A;
+    let locations = new Set();
+    let visited = new Set();
+    let min = A.length;
+
+    for (let i=0; i<schedule.length; i++) {
+        locations.add(schedule[i]);
+    }
+
+    for (let i=0; i<schedule.length-1; i++) {
+        let days = 0;
+        for (let j=i; j<schedule.length; j++) {
+            days++;
+            visited.add(schedule[j]);
+    
+            if (days > min) break;
+
+            if (visited.size == locations.size) {
+                min = Math.min(min, days);
+                visited.clear();
+                break;
+            }
+        }
+    }
+    
+    return min;
+}
+
+function solutionBtype(A) {
+    let schedule = A;
+    let locations = new Set();
+    let visited = new Set();
+    let min = A.length;
+    let days;
+
+    for (let i=0; i<schedule.length; i++) {
+        locations.add(schedule[i]);
+    }
+
+    for (let i=0; i<schedule.length-(1+locations.size); i++) {
+        days = 0;
+        for (let j=i; j<schedule.length; j++) {
+            days++;
+            visited.add(schedule[j]);
+
+            if (days > min) break;
+    
+            if (visited.size == locations.size) {
+                min = Math.min(min, days);
+                visited.clear();
+                break;
+            }
+        }
+        
+    }
+
+    return min;
+}
+
+// console.log(solution([7,3,7,3,1,3,4,1]));
+// console.log(solution([2,1,1,3,2,1,1,3]));
+// console.log(solution([7,5,2,7,2,7,4,7]));
+// console.log(solution([7,7,7,7,7,7,7,7]));
+// console.log(solution([7,7,7,6,7,7,7,7]));
+// console.log(solution([1,2,3,4,5,6,7,8]));
+
+
+// console.log(solutionAtype([7,3,7,3,1,3,4,1]));
+// console.log(solutionAtype([2,1,1,3,2,1,1,3]));
+// console.log(solutionAtype([7,5,2,7,2,7,4,7]));
+// console.log(solutionAtype([7,7,7,7,7,7,7,7]));
+// console.log(solutionAtype([7,7,7,6,7,7,7,7]));
+// console.log(solutionAtype([1,2,3,4,5,6,7,8]));
+
+
+// console.log(solutionBtype([7,3,7,3,1,3,4,1]));
+// console.log(solutionBtype([2,1,1,3,2,1,1,3]));
+// console.log(solutionBtype([7,5,2,7,2,7,4,7]));
+// console.log(solutionBtype([7,7,7,7,7,7,7,7]));
+// console.log(solutionBtype([7,7,7,6,7,7,7,7]));
+// console.log(solutionBtype([1,2,3,4,5,6,7,8]));
+
+
+let startTime = new Date().getTime();
+console.log(solutionAtype([1,2,3,4,5,6,7,8]));
+let endTime = new Date().getTime();
+
+console.log("A 타입 : "+(endTime-startTime));
+
+startTime = new Date().getTime();
+console.log(solutionBtype([1,2,3,4,5,6,7,8]));
+endTime = new Date().getTime();
+
+console.log("B 타입 : "+(endTime-startTime));
+
+
+
 // function solution(A) {
 //     let schedule = A;
 //     let lastVisitDays = new Array(A.length).fill(0);
@@ -104,46 +238,3 @@
 
 //     return lastDay-startDay+1;
 // }
-
-function solution(A) {
-    let schedule = A;
-    let lastVisitDays = new Array(A.length).fill(0);
-    let locationCnt = 0;
-    let visited = new Set();
-
-    for (let i=0; i<schedule.length; i++) {
-        lastVisitDays[schedule[i]] = i;
-    }
-
-    for (let i=0; i<lastVisitDays.length; i++) {
-        if (lastVisitDays[i] != 0) {
-            locationCnt++;
-        }
-    }
-
-    let min = A.length;
-    let count = 0;
-    for(let start=0; start<schedule.length; start++) {
-        count = 0;
-        for (let cursor=start; cursor<schedule.length; cursor++) {
-            count++;
-            if (!visited.has(schedule[cursor])) {
-                visited.add(schedule[cursor]);
-            }
-    
-            if (visited.size == locationCnt) {
-                visited = new Set();
-                min = Math.min(min, count);
-                break;
-            }
-        }
-    }
-    return min;
-}
-
-console.log(solution([7,3,7,3,1,3,4,1]));
-console.log(solution([2,1,1,3,2,1,1,3]));
-console.log(solution([7,5,2,7,2,7,4,7]));
-console.log(solution([7,7,7,7,7,7,7,7]));
-console.log(solution([7,7,7,6,7,7,7,7]));
-// console.log(solution([1,2,3,4,5,6,7,8]));

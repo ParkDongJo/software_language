@@ -79,8 +79,103 @@ function solution(A) {
     return count;
 }
 
-console.log(solution([2,2,3,4,3,3,2,2,1,1,2,5]))
-console.log(solution([-3,-3]))
-console.log(solution([-3,1,2,2,1,-3]))
+function solutionBtype(A) {
+    if (A.length==0) return 0;
+
+    let heights = A;
+    let prev = heights[0];
+    let count = 0;
+    
+    for (let i=0; i<heights.length-1; i++) {
+        if (heights[i] < heights[i+1]) {
+            if (heights[i] <= prev) {
+                count++;
+            }
+            prev = heights[i];
+        }
+        if ((heights[i] > heights[i+1])) {
+            if (heights[i] >= prev) {
+                count++;
+            }
+            prev = heights[i];
+        }
+    }
+
+    return ++count;
+}
+
+function solutionCtype(A) {
+    if (A.length==0) return 0;
+
+    let heights = A;
+    let prev = heights[0];
+    let count = 0;
+    
+    for (let i=0; i<heights.length-1; i++) {
+        let next = heights[i+1];
+
+        if (heights[i] < next) {
+            if (heights[i] <= prev) count++;
+            prev = heights[i];
+
+        } else if ((heights[i] > next)) {
+            if (heights[i] >= prev) count++;
+            prev = heights[i];
+        }
+    }
+
+    return ++count;
+}
+
+function solutionDtype(A) {
+    if (A.length==0) return 0;
+
+    let heights = A;
+    let prev = heights[0];
+    let count = 0;
+    
+    for (let i=0; i<heights.length-1; i++) {
+
+        if (heights[i] != heights[i+1]) {
+            if (isHill(prev, heights[i], heights[i+1])) count++;
+            if (isValley(prev, heights[i], heights[i+1])) count++;
+
+            prev = heights[i];
+        }
+    }
+
+    return ++count;
+}
+
+function isHill(prev, cursor, next) {
+    return cursor < next ? (cursor <= prev ? true : false) : false 
+}
+
+function isValley(prev, cursor, next) {
+    return cursor > next ? (cursor >= prev ? true : false) : false 
+}
 
 
+
+// console.log(solution([2,2,3,4,3,3,2,2,1,1,2,5]))
+// console.log(solution([-3,-3]))
+// console.log(solution([-3,1,2,2,1,-3]))
+// console.log(solution([2,1,2,2,1,2]))
+// console.log(solution([-1000000000,-1000000000]))
+// console.log(solution([2,2,2,2,1,2]))
+
+// console.log(solutionCtype([2,2,3,4,3,3,2,2,1,1,2,5]))
+// console.log(solutionCtype([-3,-3]))
+// console.log(solutionCtype([-3,1,2,2,1,-3]))
+// console.log(solutionCtype([2,1,2,2,1,2]))
+// console.log(solutionCtype([-1000000000,-1000000000]))
+// console.log(solutionCtype([2,2,2,2,1,2]))
+// console.log(solutionCtype([-1000000000,1000000000]))
+
+console.log(solutionDtype([2,2,3,4,3,3,2,2,1,1,2,5]))
+console.log(solutionDtype([-3,-3]))
+console.log(solutionDtype([-3,1,2,2,1,-3]))
+console.log(solutionDtype([2,1,2,2,1,2]))
+console.log(solutionDtype([-1000000000,-1000000000]))
+console.log(solutionDtype([2,2,2,2,1,2]))
+console.log(solutionDtype([-1000000000,1000000000]))

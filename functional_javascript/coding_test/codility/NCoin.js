@@ -36,7 +36,6 @@ function solution(A) {
 
     let coins = A;
     let zeroCnt = 0;
-    let oneCnt = 0;
 
     for (let i=0; i<coins.length; i++) {
         zeroCnt += coins[i] == 0 ? 1 : 0;
