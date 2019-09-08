@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>선택자의 종류</title>
+    <style>
+        /*태그 선택자*/
+        li {
+            font-size: 15px;
+        }
+        /*
+            ID 선택자
+            - id 선택자는 각각 해당 파일에서 유일해야한다.
+        */
+        #active {
+            font-size: 20px;
+            color: blue;
+        }
+        /*Class 선택자*/
+        .deactive {
+            text-decoration: line-through
+        }
+
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="deactive">HTML</li>
+        <!--
+            id -> HTML 속성
+            select -> HTML 속성값
+        -->
+        <li id="active">CSS</li>
+        <li class="deactive">Javascript</li>
+    </ul>
+    
+</body>
+</html>

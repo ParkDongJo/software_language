@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>선택자 부모 자식</title>
+    <style>
+        /*
+            조상 선택자
+            - ul 아래 있는 모든 li 해당
+        */
+        ul li {
+            color: blue;
+        }
+        /*
+            부모 자식 선택자
+            - #lecture 바로 직계관계인 li들만 해당
+        */
+        #lecture > li {
+            border: 1px solid blue;
+        }
+        /*
+            친구 선택자
+        */
+        ul, ol {
+            background-color: powderblue
+        }
+        /*
+            <태그명>.class 선택자
+            - 해당 태그에 명시된 class명을 통해서 선택
+        */
+        bento orange.small {
+            text-decoration: lightseagreen
+        }
+        /* 모두 선택자 */
+        bento * {
+            text-decoration: underline
+        }
+        /* 동기자매 선택자 */
+        plate + apple.small, plate + apple {
+            color: blue;
+        }
+        /* 여러 동기자매 선택자 */
+        plate ~ aplle {
+            border: 1px solid blueviolet;
+        }
+        .picknic > bento > apple:first-child {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>Javascript</li>
+    </ul>
+    <ol id="lecture">
+        <li>HTML</li>
+        <li>CSS
+            <ol>
+                <li>Selector</li>
+                <li>Selector</li>
+            </ol>
+        </li>
+        <li>Javascript</li>
+    </ol>
+    <ul class="picknic">
+        <bento>
+            <apple class="small">sm apple</apple> 
+            <apple class="small">sm apple</apple> 
+            <apple class="small">sm apple</apple> 
+        </bento>
+        <bento>
+            <orange class="small">sm orange</orange>
+        </bento>
+        <bento>
+            <orange class="small">sm orange</orange>
+        </bento>
+    </ul>
+    <ul class="table">
+        <plate>plate</plate>
+        <apple class="small">sm aplle</apple>
+        <plate>plate</plate>
+        <apple>apple</apple>
+        <apple>aplle</apple>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>가상 클래스</title>
+    <style>
+        /*[ 가상 클래스 대표작 ]*/
+
+        a:link {
+            color: black;
+        }
+        /*
+            visited는 보안적인 문제때문에
+            매우 제한적인 속성들만 쓸수 있다.
+        */
+        a:visited {
+            color: yellow;
+        }
+        /*
+            가상 클ㅈ래스 같은 경우
+            아래와 같이 동급일 때, 가장 뒤에 나오는 것이 우선적용된다.
+            - 그래서 UX상 a:hover가 앞으로 나오는 것이 바람직 하다.
+            - 그래서 몇몇 이유로 focus는 가장 마지막에 두는 것이 마람직하다.
+        */
+        a:hover {
+            color: blue;
+        }
+        a:active {
+            color: green;
+        }
+        a:focus {
+            background-color: black;
+            color: white;
+        }
+        
+        /* 가상 요소 */
+        .box::before {
+
+        }
+        .box::after {
+
+        }
+    </style>
+</head>
+<body>
+    <a href="https://opentutorials.org">방문함</a>
+    <a href="https://a.a">방문안함</a>
+    
+    <div class="box"></div>
+</body>
+</html>
