@@ -127,6 +127,19 @@ function solutionAtype(A) {
     return min;
 }
 
+/*
+    나름 몇가지 조건들을 통해서 성능을 A타입보다 개선하긴 했다.
+    방문한 지역이 locations 갯수와 동일할 때마다, min 값을 비교하여, min을 갱신한다.
+    그리고 더이상 2차 루프를 타는 것을 벗어난다.
+
+    또한 이미 min값보다 넘어가는 경우도 break를 걸어 2차 루프를 타는 것을 벗어난다.
+
+    하지만 문제는 매번 set을 비워주는 작업을 하는 것이다.
+    set.clear()나 new Set() 같은 경우 내부적으로 set() 안에 있는 값을 제거하기 위해,
+    O(N)의 시간복잡도를 가질것이다. new Set() 같은경우는 gc가 해당 값을 처리한다고, O(N) 이 걸릴것이다.
+    
+    그래서, 아래의 코드는(A타입도 마찬가지) 실제로 O(N^3)의 시간복잡도를 가
+*/
 function solutionBtype(A) {
     let schedule = A;
     let locations = new Set();
@@ -152,9 +165,98 @@ function solutionBtype(A) {
                 break;
             }
         }
-        
     }
 
+    return min;
+}
+
+/*
+    그렇다면, 어떻게든 이 문제의 시간복잡도를 통과하려면,
+    효율적인 DP cache를 생각 해내던지
+    또는, 반복문을 무조건 1차원 적으로 풀어내야 하는것 뿐이다.
+
+    1차원 loop로 구현하려면, start와 end 포인트를 각각 알아내는 방법을 생각해야한다.
+
+    하지만, 이건 오류가 있다!!!
+    start나 end의 기준을 1차원 loop만을 통해서는 불가능하다고 판단됐다.
+
+    아래와 같이 구현하였으나, 이는 논리적인 오류가 있다.
+    start나 end를 찾는 기준이 예외가 매번 존재했다.
+*/
+function solutionCtype(A) {
+    let schedule = A;
+    let locations = new Set();
+    let visited = new Set();
+    let min = A.length;
+    let days;
+    let start = 0;
+    let end = schedule.length - 1;
+
+    for (let i=0; i<schedule.length; i++) {
+        locations.add(schedule[i]);
+    }
+
+    for (let i=0; i<schedule.length; i++) {
+        visited.add(schedule[i]);
+
+        if (visited.size == locations.size) {
+            end = i;
+            visited.clear();
+            break;
+        }
+    }
+
+    for (let i=end; i>=0; i--) {
+        visited.add(schedule[i]);
+
+        if (visited.size == locations.size) {
+            start = i;
+            break;
+        }
+    }
+    
+    return end - start +1;
+}
+
+/*
+    그렇다면!!!
+    시간복잡도는 O(N^2)를 염두해 두고 짠다고 했을때, 2차원 loop에서
+    실제로 O(N)이 돌지 않도록 하는 방법을 생각해야했다.    
+
+    cache에 특정 정보들을 저장하면서,
+    2차원 loop를 돌게끔 해야한다.
+    cache 를 clear() 하는 방법도 넣어서는 안된다.
+
+    그렇다면 공간복잡도를 높이더라도, Map() 을 이용해서 {key: index, visited: Set()}
+    으로 계속 체크 해야한다.
+
+    그러면 두 루프는 사실상 1 + 2 + 3 + 4 + 5 + 6 .. 처럼 돌게 되고
+    O(N^2) 으로 볼수 있지만
+    실제 시간복잡도는 어떠한 경우든 O(1/2*n^2)
+    
+*/
+function solutionDtype(A) {
+    let schedule = A;
+    let locations = new Set();
+    let visitedMap = new Map();
+    let min = schedule.length;
+
+    for (let i=0; i<schedule.length; i++) {
+        locations.add(schedule[i]);
+    }
+
+    for (let i=0; i<schedule.length; i++) {
+        visitedMap.set(i, new Set().add(schedule[i]));
+
+        visitedMap.forEach((visited, start, map) => {
+            visited.add(schedule[i])
+
+            if (visited.size == locations.size) {
+                min = Math.min(min, i-start+1);
+            }
+        })
+    }
+    
     return min;
 }
 
@@ -182,17 +284,39 @@ function solutionBtype(A) {
 // console.log(solutionBtype([1,2,3,4,5,6,7,8]));
 
 
-let startTime = new Date().getTime();
+// console.log(solutionCtype([7,3,7,3,1,3,4,1]));
+// console.log(solutionCtype([2,1,1,3,2,1,1,3]));
+// console.log(solutionCtype([7,5,2,7,2,7,4,7]));
+// console.log(solutionCtype([7,7,7,7,7,7,7,7]));
+// console.log(solutionCtype([7,7,7,6,7,7,7,7]));
+// console.log(solutionCtype([1,2,3,4,5,6,7,8]));
+
+
+// console.log(solutionDtype([7,3,7,3,1,3,4,1]));
+// console.log(solutionDtype([2,1,1,3,2,1,1,3]));
+// console.log(solutionDtype([7,5,2,7,2,7,4,7]));
+// console.log(solutionDtype([7,7,7,7,7,7,7,7]));
+// console.log(solutionDtype([7,7,7,6,7,7,7,7]));
+// console.log(solutionDtype([1,2,3,4,5,6,7,8]));
+
+
+let startTime1 = new Date().getTime();
 console.log(solutionAtype([1,2,3,4,5,6,7,8]));
-let endTime = new Date().getTime();
+let endTime1 = new Date().getTime();
 
-console.log("A 타입 : "+(endTime-startTime));
+console.log("A 타입 : "+(endTime1-startTime1));
 
-startTime = new Date().getTime();
+let startTime2 = new Date().getTime();
 console.log(solutionBtype([1,2,3,4,5,6,7,8]));
-endTime = new Date().getTime();
+let endTime2 = new Date().getTime();
 
-console.log("B 타입 : "+(endTime-startTime));
+console.log("B 타입 : "+(endTime2-startTime2));
+
+let startTime3 = new Date().getTime();
+console.log(solutionDtype([1,2,3,4,5,6,7,8]));
+let endTime3 = new Date().getTime();
+
+console.log("D 타입 : "+(endTime3-startTime3));
 
 
 
