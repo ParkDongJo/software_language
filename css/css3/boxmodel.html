@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        p, span {
+            /* border-width: 10px;
+            border-style: solid;
+            border-color: red; */
+            border: 10px solid red;
+            padding: 20px;
+            margin: 20px 20px;
+            width: 500px;   /* 인라인은 width, height는 적용되지 않는다. */
+        }
+        
+        /* box-sizing */
+        div.sizing {
+            margin: 10px;
+            width: 150px;
+            /* box-sizing: content-box; */
+            box-sizing: border-box;
+        }
+        #small {
+            border: 10px solid black;
+        }
+        #large {
+            border: 30px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="model">
+        <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+            Dolorem veniam aperiam totam non et impedit eaque facere provident,
+            quis nemo debitis praesentium hic, ipsum libero. Facilis, 
+            amet reiciendis. Corporis, ratione?
+        </p>
+        <span>
+            hello my nick name is charles.
+        </span>
+    </div>
+    <div class="sizing">
+        <div id="small">small</div>
+        <div id="large">large</dir>
+    </div>
+    
+</body>
+</html>

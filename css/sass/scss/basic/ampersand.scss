@@ -1,0 +1,29 @@
+// 상위선택자 참조
+// 중첩 안에서 & 키워드는 상위(부모) 선택자를 참조하여 치환합니다.
+.btn {
+  background-color: green;
+
+  &.active {
+    color: red;
+  }
+}
+
+section {
+  .list {
+    li {
+      &:last-child {
+        color: blue;
+        font-size: 16px;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+// & 키워드가 참조한 상위 선택자로 치환되는 것이다.
+// 그래서 아래와 같이도 사용할 수 있다.
+.title {
+  &-small { font-size: 16; }
+  &-medium { font-size: 24; }
+  &-large { font-size: 28; }
+}

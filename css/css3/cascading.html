@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /*
+            [우선순위]
+           !important > 인라인 > ID > 클래스 > 태그
+        */
+        li { color: red !important;}
+        #idsel { color: blue; }
+        .classsel { color: green; }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>html</li>
+        <li id="idsel" class="classsel" style="color: powderblue">css</li>
+        <li>javascript</li>
+    </ul>
+    <ol>
+        <li>style atrribute</li><!-- ID보다는 태그에 더 명확히 명시됨 -->
+        <li>id selector</li>    <!-- 유일한 ID인 구체적인 속성 -->
+        <li>class selector</li> <!-- 여러 엘레멘트를 선택할 수 있는 포괄적인 규칙 -->
+        <li>tag selector</li>   <!-- 가장 포괄적인 규칙 -->
+    </ol>
+</body>
+</html>

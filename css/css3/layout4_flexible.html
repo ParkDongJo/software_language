@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--
+        viewport를 해주는 이유
+
+        -  
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레이아웃</title>
+    <style>
+        body {
+            /* font-size: 2em; */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 0 auto;
+            max-width: 1000px;
+            background-color: blueviolet;
+        }
+
+        .item {
+            padding: 5%;
+        }
+
+        .item-a {
+            background-color: yellow;
+        }
+
+        .item-b {
+            background-color: yellowgreen;
+        }
+
+        /*
+            media 쿼리 
+            700 width를 해준 이유는
+        */
+        @media screen and (min-width: 700px) {
+            .container {
+                font-size: 0;
+            }
+            .item {
+                display: inline-block;
+                vertical-align: top;
+                font-size: 1rem;
+            }
+            .item-a {
+                width: 30%;
+            }
+            .item-b {
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="item item-a">
+            <h1>Section a</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Doloremque, beatae nihil quod impedit officia eaque a.
+                Ex iste iure soluta quisquam, voluptas excepturi illum veniam 
+                distinctio dignissimos sit officia cum.
+            </p>
+        </section>
+        <section class="item item-b">
+            <h1>Section b</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Doloremque, beatae nihil quod impedit officia eaque a.
+                Ex iste iure soluta quisquam, voluptas excepturi illum veniam 
+                distinctio dignissimos sit officia cum.
+            </p>
+        </section>
+    </div>
+</body>
+</html>

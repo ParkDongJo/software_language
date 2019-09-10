@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>레이아웃</title>
+    <style>
+        body {
+            font-size: 2em;
+            color: #FFF;
+        }
+        /* 
+            줄바꿈이 있다.
+
+            width default = 부모의 width 값을 따른다.
+            height default = 자식의 height 값을 따른다.
+
+            article, header, footer, div, section, nav
+        */
+        div {
+            display: block;
+            width: 300px;
+            height: 200px;
+            background-color: red;
+        }
+        /*
+            줄바꿈이 없다.
+
+            width 와 height가 없다.
+            태그 안에 있는 컨텐츠(text)를 기준으로 잡혀진다.
+        */
+        span {
+            display: inline;
+            /* width: 200px;
+            height: 200px; */
+            background-color: blue;
+        }
+
+        /*
+            inline 속성처럼 줄바꿈이 없다
+
+            width default = inline속성 처럼 width가 없다.
+            height default = inline속성 처럼 height가 없다.
+
+            width 값을 주면 = width값을 가지게 된다.
+            height 값을 주면 = height값을 가지게 된다.
+        */
+        #inline-block {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            background-color: blueviolet;
+        }
+
+        /*
+            [ display 속성값 ]
+            기본형 - block / inline / inline-block / none / table
+            반응형 - flex / grid
+        */
+        span
+    </style>
+</head>
+<body>
+
+    <div>div</div>
+    <span>span</span>
+    <span id="inline-block">span</span>
+    
+    <a href=""></a>
+    <section></section>
+    <img src="" alt="">
+
+</body>
+</html>

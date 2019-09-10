@@ -1,0 +1,38 @@
+h1 {
+  font-size: 0; }
+
+.btn {
+  background-color: green; }
+  .btn.active {
+    color: red; }
+
+section .list li:last-child {
+  color: blue;
+  font-size: 16px;
+  font-weight: 700; }
+
+.title-small {
+  font-size: 16; }
+
+.title-medium {
+  font-size: 24; }
+
+.title-large {
+  font-size: 28; }
+
+section {
+  width: 100%; }
+  section .list {
+    padding: 20px; }
+    section .list li {
+      float: left;
+      margin-right: 10px;
+      list-style: none; }
+    section .list::after {
+      content: "after";
+      display: block;
+      clear: left; }
+
+.title {
+  color: blue;
+  font-size: 14px; }

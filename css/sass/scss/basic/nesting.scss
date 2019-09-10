@@ -1,0 +1,21 @@
+// sass는 중첩 기능을 사용할 수 있다.
+// css의 관계가 더 직관적으로 보일수 있다.
+section {
+  width: 100%;
+
+  .list {
+    padding: 20px;
+
+    li {
+      float: left;
+      margin-right: 10px;
+      list-style: none;
+    }
+
+    &::after {
+      content: "after";
+      display: block;
+      clear: left;
+    }
+  }
+}

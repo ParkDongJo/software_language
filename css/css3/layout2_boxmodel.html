@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>레이아웃</title>
+    <style>
+        body {
+            font-size: 2em;
+        }
+
+        * {
+            /*
+                [ CSS reset이라는 개념 ]
+                이렇게 기존에 셋팅되어 있는 속성값을 리셋시키고 시작한다.
+
+                요즘에는 * 는 모든 태그에 접근하여 속성값을 셋팅해주기 때문에,
+                렌더링 성능에 악영향을 미친다. 그래서 쓰지 않는것이 좋다.
+            */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            /* 공백 문자를 없애기 위한 작업 */
+            font-size: 0;
+            margin: 0 auto;
+            /* 최대 1000까지만 반응형으로 된다.*/
+            max-width: 1000px;
+        }
+
+        .item {
+            display: inline-block;
+            /*
+                1. inline 이나 inline-block 요소에만 적용됨
+                2. 요소 자체만을 정렬하고, 내용에는 영향을 미치지 않음 (table cell에 적용할 때는 제외)
+                3. vertical-align은 정렬하려는 요소를 다른 인라인 요소에 상대적으로 적용함 또는
+                    부모요소를 기준으로 상대적으로 정렬함
+                    그래서 비교대상 인라인의 height와 line-height 값에 의해 영향을 받음
+            */
+            vertical-align: top;
+            padding: 5%;
+            /*
+                root em 이란
+                html이 default로 가지고 있는 폰트 사이즈를
+                em 단위로 쓰겠다는 의미
+
+                대부분의 브라우저는 1em = 16px;로 셋팅되어 있다.
+            */
+            font-size: 1rem;
+        }
+
+        .item-a {
+            width: 30%;
+            background-color: yellow;
+        }
+
+        .item-b {
+            width: 50%;
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="item item-a">
+            <h1>Section a</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Doloremque, beatae nihil quod impedit officia eaque a.
+                Ex iste iure soluta quisquam, voluptas excepturi illum veniam 
+                distinctio dignissimos sit officia cum.
+            </p>
+        </section>
+        <!--
+            여기엔 줄바꿈이나 띄어쓰기는
+            항상 하나의 공백문자를 포함하고 있다.
+            
+            이는 width와 height에 항상 영향을 미친다.
+
+            이걸.. 만약에 모르면 이거 왜이래? 하면서
+            의미 없는 삽질을 엄청 하게 되는거지..
+        -->
+        <section class="item item-b">
+            <h1>Section b</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Doloremque, beatae nihil quod impedit officia eaque a.
+                Ex iste iure soluta quisquam, voluptas excepturi illum veniam 
+                distinctio dignissimos sit officia cum.
+            </p>
+        </section>
+    </div>
+</body>
+</html>
