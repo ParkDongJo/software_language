@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Like Button</title>
+
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <style>
+    .btn-like {
+      padding: 10px 20px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const e = React.createElement;
+
+    class LikeButton extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          liked: false,
+        }
+      }
+
+      onClickLike = () => {
+        const { liked } = this.state;
+
+        this.setState({ liked: !liked })
+      }
+
+      render() {
+        return (
+          //JSX = (JS + XML) 문법이 더 엄격하다.
+          // babel이 JSX 문법을 기본형 createElemet 형식으로 변경시켜 준다.
+          <button
+            className="btn-like"
+            type='submit'
+            onClick={this.onClickLike}>
+            { this.state.liked === true ? 'liked' : 'like' }
+            </button>
+        )
+
+        // return e('button', 
+        //         { onClick: ()=> { this.setState({liked: !this.state.liked}) }, type: 'submit', class: 'btn-like' },
+        //         this.state.liked === true ? 'liked' : 'like'); 
+        //         // <button onclick="">like</button>
+        //         // $('button').text('liked')
+      }
+
+      /*
+        React.createElement(
+          type,             요소 타입 명시
+          [props],          props를 넘겨줘야 할때
+          [...children]     요소에 들어갈 child 요소 또는 값
+        )
+      */
+    }
+  </script>
+  <script type="text/babel">
+    ReactDOM.render(<LikeButton />, document.querySelector('#root'));
+  </script>
+</body>
+</html>
