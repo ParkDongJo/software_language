@@ -1,6 +1,7 @@
+// 중첩을 통해 각각의 요소들의 관계를 나타낼 수 있다.
 // sass는 중첩 기능을 사용할 수 있다.
 // css의 관계가 더 직관적으로 보일수 있다.
-section {
+#nesting {
   width: 100%;
 
   .list {
@@ -8,8 +9,8 @@ section {
 
     li {
       float: left;
-      margin-right: 10px;
       list-style: none;
+      margin-right: 10px;
     }
 
     &::after {
@@ -19,3 +20,46 @@ section {
     }
   }
 }
+
+// 중첩에서 벗어 나고 싶을 때
+// @at-root 키워드를 앞에다 명시해 두면 된다.
+#nesting {
+  .list {
+    $w: 100px;
+    $h: 50px;
+
+    li {
+      border: 1px solid blue;
+      height: $h;
+      width: $w;
+    }
+
+    // $w, $h 같은 scss의 특정 변수들을 함께 사용하기 위해
+    // 중첩안에서는 쓰지만 의미상 밖에 있어야 할 때
+    @at-root .box {
+      height: $h;
+      width: $w;
+    }
+  }
+}
+
+// font-, marign- padding- 등과 같이
+// 동일한 네임스페이스를 가지는 속성들을
+// 네이밍을 일일이 다 명시할 필요 없이
+// 아래와 같이 관계로 표현하여서 코드의 중복을 줄일 수 있다.
+.box {
+  font: {
+    weight: bold;
+    size: 14px;
+    family: sans-serif;
+  };
+  margin: {
+    top: 10px;
+    right: 10px;
+  }
+  padding: {
+    bottom: 40px;
+    right: 30px;
+  }
+}
+

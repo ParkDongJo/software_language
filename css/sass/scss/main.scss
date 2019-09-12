@@ -5,6 +5,12 @@ h1 {
   font-size: 0;
 }
 
+// 변수
+@import './basic/variables.scss';
+// 상위 선택자 참조
 @import './basic/ampersand.scss';
+// 요소 중첩
 @import './basic/nesting.scss';
+// 타입
 @import './basic/type.scss';
+

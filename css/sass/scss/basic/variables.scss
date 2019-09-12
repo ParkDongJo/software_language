@@ -1,0 +1,45 @@
+// [ 변수 ]
+// 반복적으로 사용되는 값을 변수로 지정할 수 있다.
+// 변수 이름 앞에는 $값을 붙인다.
+
+// $변수이름: 속성값;
+
+$color-primary: blue;
+$url-images: "/assets/images/";
+$w: 200px;
+
+.box {
+  width: $w;
+  margin-left: $w;
+  background: $color-primary url($url-images + "charles.jpeg")
+}
+
+
+// [ 변수 유효 범위 & 전역변수 ]
+// 선언된 { } 블록 내에서만 사용이 가능하다.
+.box {
+  $color: #222;
+  $global-color: #eee !global;
+  background-color: $color;
+}
+
+// 아래는 범수 유효범위가 벗어난 영역이기때문에,
+// $color를 사용할 수 없다.
+// 하지만
+.box2 {
+  background-color: $global-color;
+}
+
+
+// 변수 재할당
+// scss의 변수는 다시 재할당 할 수 있습니다.
+$red: red;
+$blue: blue;
+
+$color-primary: $blue;
+$color-danger: $red;
+
+.box {
+  color: $color-primary;
+  background: $color-danger;
+}

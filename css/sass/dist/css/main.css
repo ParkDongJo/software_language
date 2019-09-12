@@ -20,18 +20,36 @@ section .list li:last-child {
 .title-large {
   font-size: 28; }
 
-section {
+#nesting {
   width: 100%; }
-  section .list {
+  #nesting .list {
     padding: 20px; }
-    section .list li {
+    #nesting .list li {
       float: left;
-      margin-right: 10px;
-      list-style: none; }
-    section .list::after {
+      list-style: none;
+      margin-right: 10px; }
+    #nesting .list::after {
       content: "after";
       display: block;
       clear: left; }
+
+#nesting .list li {
+  border: 1px solid blue;
+  height: 50px;
+  width: 100px; }
+
+.box {
+  height: 50px;
+  width: 100px; }
+
+.box {
+  font-weight: bold;
+  font-size: 14px;
+  font-family: sans-serif;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding-bottom: 40px;
+  padding-right: 30px; }
 
 .title {
   color: blue;
