@@ -1,0 +1,19 @@
+{
+  "name": "react_practice_3",
+  "version": "1.0.0",
+  "description": "react practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "test react"
+  },
+  "author": "dev. charles",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8"
+  }
+}

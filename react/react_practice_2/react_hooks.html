@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    const multipleQuiz = () => {
+      // 구조분해 문법 (destructuring)
+      // 구조 분해 할당 구문은 배열이나 객체의 속성을 해체하여 그 값을 개별 변수에 담을 수 있게 하는 JavaScript 표현식입니다.
+      /*
+        [ 구조 분해 예제 ]
+
+        [a, b, ...rest] = [10, 20, 30, 40, 50];
+        console.log(a); // 10
+        console.log(b); // 20
+        console.log(rest); // [30, 40, 50]
+
+
+        ({a, b, ...rest} = {a: 10, b: 20, c: 30, d: 40});
+        console.log(a); // 10
+        console.log(b); // 20
+        console.log(rest); // {c: 30, d: 40}
+      */
+      const [first, setFirsst] = React.useState(Math.ceil(Math.random() * 9))
+      const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9))
+      const [value, setValue] = React.useState('')
+      const [result, setResult] = React.useState('')
+      // hooks에서는 useRef()를 통해서 Dom에 접근
+      const inputRef = React.useRef(null)
+
+      // 이렇게 한꺼번에 state를 변경시키는 방식이 가능은 하다.
+      // const [state, setState] = React.useState({
+      //   first: Math.ceil(Math.random() * 9),
+      //   second: Math.ceil(Math.random() * 9),
+      //   value: '',
+      //   result: '',
+      // })
+      
+
+      const onChange = (e) => {
+        setValue(e.target.value)
+      }
+
+      const onSubmit = (e) => {
+        e.preventDefault()
+        
+        if (parseInt(value) === first * second) {
+          setResult('정답 : ' + value)
+          // 이렇게 할수는 있다. 하지만 이 예제에서는 굳이 이럴 필요는 없다.
+          // setResult((prevResult) => {
+          //   return '정답: ' + prevResult
+          // })
+
+          setFirsst(Math.ceil(Math.random() * 9))
+          setSecond(Math.ceil(Math.random() * 9))
+          setValue('')
+
+          // 이렇게 할수는 있다.
+          // setState({
+          //   result: '정답 : '+ prev.value,
+          //   first: Math.ceil(Math.random() * 9),
+          //   second: Math.ceil(Math.random() * 9),
+          //   value: '',
+          // })
+
+          inputRef.current.focus()
+        } else {
+          setResult('땡 : ')
+          setValue('')
+
+          // 이렇게 하는 것은 문제가 된다. 나머지 state의 레퍼런스
+          // 연결을 끊어버린다.
+          // setState({
+          //   result: '땡 : ',
+          //   value: '',
+          // })
+
+          inputRef.current.focus()
+        }
+      }
+
+      return (
+        <React.Fragment>
+          <div>{first} * {second} = ?</div>
+          <form onSubmit={}>
+            <input ref={inputRef} onChange={} value={value}/>
+            <button type="submit">Submit</button>
+          </form>
+          <div id="result">{result}</div>
+        </React.Fragment>
+      )
+    }
+  </script>
+  <script>
+    ReactDOM.render(<MutipleQuiz />, document.querySelector('#root'));
+  </script>
+</body>
+</html>

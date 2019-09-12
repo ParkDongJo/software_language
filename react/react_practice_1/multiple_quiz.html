@@ -13,6 +13,9 @@
         body {
             font-size: 2em;
         }
+        .panel {
+
+        }
     </style>
 </head>
 <body>
@@ -53,11 +56,13 @@
                         value: '',
                       }
                     })
+                    this.input.focus()
                 } else {
                     this.setState({
                         result: '땡',
                         value: '',
                     });
+                    this.input.focus()
                 }
             }
 
@@ -67,13 +72,43 @@
 
             // () 는 그룹 연산자이고, 없어도 무방하다. (1+2)*2 여기서 쓰이는 것과 같다
             render() {
+                /*
+                    setState() 할때마다, render()가 실행되고 리렌더링된다.
+                    물론 내부적으로는 비동기 식으로 상태 변환 내용을 축적했다가 한꺼번에 batch 하지만
+                    이것도 계속적으로 실행되면 성능에 좋지 않다.
+                    
+                    또한 이러한 부분 때문에, render() 안에서 onSubmit() 이라던지, onChange() 라던지
+                    함수들을 따로 분리 시키는 것이 좋다. 만약 JSX 안에서 명시가 되어 있다면,
+                    리렌더링 될 때마다 함수들을 새롭게 생성해준다.
+
+                    이건 성능에 영향을 주기때문에, 간단한 함수가 아닌 이상,
+                    따로 빼내어서 코드를 작성해주는 것이 좋다.
+                */
+
                 return (
                     // 만약 바벨이 2v 이상대이면
                     // <></> 빈태그를 사용하여서 코드를 더 깔끔하게 만들 수 있다.
                     <React.Fragment>
-                        <div>{this.state.first} 곱하기 {this.state.second} 는?</div>
+                        <!--
+                            class => className
+                            for => htmlFor
+                        -->
+                        <div className="panel" htmlFor="input-text">{this.state.first} 곱하기 {this.state.second} 는?</div>
                         <form onSubmit={this.onSubmit}>
+                            <!--
+                                언제 Refs를 사용하는가
+                                refs를 사용하기 좋은 일부 케이스가 있습니다.
+
+                                - 포커스 제어, 텍스트 선택, 미디어 재생을 관리할 때
+                                - 명령형 애니메이션을 발동시킬 때
+                                - 써드 파티 DOM 라이브러리를 통합할 때
+
+                                페이스북에서는 Ref를 너무 과하게 사용하지 않는것을 권장한다.
+                                아무래도 기존 state 변경 방식과는 별개의 방식이라서 그런듯, 전체 컨셉을 지키기 위해
+                            -->
                             <input 
+                                id="input-text"
+                                ref={(cursor) => {this.input = cursor}}
                                 type="number" 
                                 value={ this.state.value } 
                                 onChange={ this.onChange } />
