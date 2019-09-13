@@ -56,8 +56,8 @@ _go(users,
 // 이와같이 curryr()을 통해서 함수의 평가 시점을 자유자재로 바꾼다면,
 // 훨씬 더 가독성 좋은 코드를 만들수 있다
 _go(users,
-    _filter(user => user.age >= 30),
-    _map(_get('name')),
+    _filterr(user => user.age >= 30),
+    _mapr(_get('name')),
     console.log
     )
 

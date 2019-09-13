@@ -37,7 +37,7 @@ let _map = (list, mapper) => {
     return new_list;
 }
 
-let _is_object = () => {
+let _is_object = (obj) => {
     return typeof obj == 'object' && !!obj
 }
 
@@ -53,7 +53,7 @@ let _each = (list, iter) => {
     for (let i=0, len = keys.length; i<len; i++) {
         iter(list[keys[i]])
     }
-    return list
+    // return list
 }
 
 function _curryr(fn) {
@@ -89,6 +89,7 @@ let _mapr = _curryr(_map),
 
 function _pipe() {
     let fns = arguments;
+
     return (arg) => {
         return _reduce(fns, (arg, fn) => {
             return fn(arg);
