@@ -4,7 +4,8 @@
   "description": "react practice",
   "main": "index.js",
   "scripts": {
-    "test": "test react"
+    "test": "test react",
+    "dev": "webpack-dev-server --hot"
   },
   "author": "dev. charles",
   "license": "ISC",
@@ -13,7 +14,14 @@
     "react-dom": "^16.9.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "react-hot-loader": "^4.12.13",
     "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.8"
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.0"
   }
 }
