@@ -96,7 +96,7 @@ const NumberBaseball = () => {
       </ul>
     </>
   );
-}
+};
 
 // class NumberBaseball extends Component {
 //   state = {
