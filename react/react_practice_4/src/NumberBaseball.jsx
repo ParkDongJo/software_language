@@ -98,6 +98,7 @@ const NumberBaseball = () => {
   );
 };
 
+
 // class NumberBaseball extends Component {
 //   state = {
 //     result: '',
