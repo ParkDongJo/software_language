@@ -1,5 +1,7 @@
 package array
 
+import oop.TestClass2
+
 fun main(args: Array<String>) {
 
     /**
@@ -88,4 +90,9 @@ fun main(args: Array<String>) {
     array9.forEach { print("$it , ")}
 
     println("")
+
+
+
+    // 오브젝트 Array 선언시
+    var objArr = Array(20) { TestClass2() }
 }
