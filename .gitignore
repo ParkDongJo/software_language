@@ -2,11 +2,19 @@
 
 ## 함수형 js
 functional_javascript/basic/node_modules
+
+## css
 css/node_modules
+
+## react
 react/react_practice_3/node_modules
 react/react_practice_4/node_modules
 react/react_practice_5/node_modules
 
+## vue
+vue/couple_matching/node_modules
+vue/couple_matching/dist
+vue/couple_matching/package-lock.json
 
 ## 코틀린
 kotlin/Basic/.idea
