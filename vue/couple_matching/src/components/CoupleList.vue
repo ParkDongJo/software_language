@@ -129,6 +129,7 @@ export default {
   // lodash 라는 걸 모르고 있었는데, 꽤나 코드가 깔끔하게 정리되는걸 보고
   // 일단 호기심이 생겨서 공식홈페이지를 들어 가봤다.
   // https://lodash.com/docs#debounce
+
   beforeCreate() {
     // 가장 먼저 실행되는 훅
     // 아직 data와 events(vm.$on, vm.$once, vm.$off, vm.$emit)가 세팅되지 않은 시점
