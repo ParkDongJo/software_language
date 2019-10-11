@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <title>focus</title>
+</head>
+<body>
+    <!-- <div id="root"></div> -->
+    <script type="text/babel">
+        class Input extends React.PureComponent {
+            render() {
+                let {forwardedRef, ...otherProps} = this.props; 
+                return <input {...otherProps} ref={forwardedRef} />;
+            }
+        }
+
+        const TextInput = React.forwardRef((props, ref) => {
+            return <Input {...props} forwardedRef={ref} />
+        });
+
+        class FocusableInput extends React.Component {
+            
+            constructor(props) {
+                super(props);
+            }
+
+            ref = React.createRef()
+
+            handleClick = () => {
+                this.ref.focus();
+            };
+
+            render() {
+                return <TextInput ref={this.ref} />;
+            }
+
+            // When the focused prop is changed from false to true, 
+            // and the input is not focused, it should receive focus.
+            // If focused prop is true, the input should receive the focus.
+            // Implement your solution below:
+            componentDidUpdate(prevProps) {
+                console.log("componentDidUpdate");
+                console.log(prevProps);
+                
+            }
+            
+            componentDidMount() {
+                console.log(this.ref.focus());
+                if (!this.props.focused) {
+                    this.setState({focused: true})
+                }
+                // this.setState({focused: true})
+                // this.ref.current.input = true;
+            }
+        }
+
+        FocusableInput.defaultProps = {
+            focused: false
+        };
+
+        const App = (props) => <FocusableInput focused={props.focused} />;
+
+        document.body.innerHTML = "<div id='root'></div>";
+        const rootElement = document.getElementById("root");
+    </script>
+    <script type="text/babel">
+        ReactDOM.render(<App />, rootElement);
+    </script>
+</body>
+</html>

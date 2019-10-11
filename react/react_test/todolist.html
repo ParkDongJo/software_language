@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title></title>
+</head>
+<body>
+    <!-- <div id="root"></div> -->
+    <script type="text/babel">
+        const TodoItem = (props) => <li onClick={props.onClick}>{props.item.text}</li>
+
+        class TodoList extends React.Component {
+            render() {
+                const { items, onClick } = this.props;
+                return (<ul onClick={onClick}>
+                {items.map((item, index) => 
+                            <TodoItem item={item} key={index} onClick={this.handleItemClick.bind(this, item)}/>)}
+                </ul>);
+            }
+            
+            handleItemClick(item, event) {
+                // Write your code here
+            }
+        }
+
+
+        const items = [ { text: 'Buy grocery', done: true },
+                        { text: 'Play guitar', done: false },
+                        { text: 'Romantic dinner', done: false }
+                        ];
+
+        const App = (props) => <TodoList
+                                items={props.items}
+                                onItemClick={(item, event) => { console.log(item, event) }}
+                                />;
+
+        document.body.innerHTML = "<div id='root'></div>";
+        const rootElement = document.getElementById("root");
+    </script>
+    <script type="text/babel">
+        ReactDOM.render(<App items={items}/>, rootElement);    
+    </script>
+</body>
+</html>
