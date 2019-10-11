@@ -105,11 +105,13 @@ const CoupleService = {
             
             const response = await ApiService.get(`/${param.size}`);
 
-            let startTime = new Date().getTime();
+            // 성능 측정
+            // let startTime = new Date().getTime();
+            // 현재 100개 13 밀리 세컨드 나온다.
             couples = matchCouple(response.data);
-            let endTime = new Date().getTime();
+            //let endTime = new Date().getTime();
 
-            console.log("performance - " ,endTime - startTime);
+            //console.log("performance - " ,endTime - startTime);
 
             return couples;
         } catch (error) {
