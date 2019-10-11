@@ -1,0 +1,14 @@
+{
+  "name": "testdemo",
+  "version": "1.0.0",
+  "description": "test demo javascript 코드 연습 모음",
+  "main": "index.js",
+  "scripts": {
+    "test": "lite-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.5.4"
+  }
+}

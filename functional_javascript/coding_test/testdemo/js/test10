@@ -1,0 +1,35 @@
+-- Suggested testing environment:
+-- http://sqlite.online/
+
+-- Example case create statement:
+CREATE TABLE directors (
+  id INTEGER NOT NULL PRIMARY KEY,
+  name VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE movies (
+  id INTEGER NOT NULL PRIMARY KEY,
+  name VARCHAR(30) NOT NULL,
+  directorId INTEGER NOT NULL REFERENCES directors (id)
+);
+
+INSERT INTO directors(id, name) VALUES(1, 'Michael Curtiz');
+INSERT INTO directors(id, name) VALUES(2, 'Alfred Hitchcock');
+INSERT INTO directors(id, name) VALUES(3, 'Steven Spielberg');
+
+INSERT INTO movies(id, name, directorId) VALUES(1, 'Casablanca', 1);
+INSERT INTO movies(id, name, directorId) VALUES(2, 'Yankee Doodle Dandy', 1);
+INSERT INTO movies(id, name, directorId) VALUES(3, 'Psycho', 2);
+
+-- Expected output (in any order):
+-- director         number of films
+-- ------------------------------
+-- Michael Curtiz   2
+-- Alfred Hitchcock 1
+-- Steven Spielberg 0
+
+-- Explanation:
+-- In this example.
+-- Casablanca and Yankee Doodle Dandy were both directed by Michael Curtiz, so he has two films.
+-- Alfred Hitchcock has directed only Psycho, so he has one film.
+-- Steven Spielberg has not directed any films, so he has a total of 0.
