@@ -14,3 +14,6 @@ function solution(A, K) {
 }
 
 console.log(solution([3, 8, 9, 7, 6], 3))
+
+
+
