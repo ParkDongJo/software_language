@@ -33,13 +33,17 @@ console.log("Quick Sort========================");
 function quickSort(arr, start, end) {
     if (start >= end) return;
 
+    // 좌 우 뽑기
     let left = new Array(100);
     let right = new Array(100);
+    // 피벗 뽑기
     let pivot = arr[start];
 
+    // 피벗 기준으로 좌배열 우배열 뽑기
     let leftCnt = getLeft(arr, start+1, end, pivot, left);
     let rightCnt = getRight(arr, start+1, end, pivot, right);
 
+    // 좌배열 + 피벗 + 우배열
     for (let i=0; i<leftCnt; i++) {
         arr[start+i] = left[i];
     }
@@ -48,7 +52,9 @@ function quickSort(arr, start, end) {
         arr[start + leftCnt + 1 + i] = right[i];
     }
 
+    // 좌배열 -> 동일하게 분할
     quickSort(arr, start, start+leftCnt-1);
+    // 우배열 -> 동일하게 분할
     quickSort(arr, start+leftCnt+1, end);
 }
 
@@ -81,11 +87,15 @@ console.log("Merge Sort========================");
 function mergeSort(arr, start, end) {
     if (start >= end) return;
 
+    // 중간지점 뽑기
     let mid = parseInt((start + end) /2);
 
+    // 중간지점을 중심으로 왼쪽을 계속 쪼게기
     mergeSort(arr, start, mid);
+    // 중간지점을 중심으로 오른쪽을 계속 쪼게기
     mergeSort(arr, mid+1, end);
 
+    // 잘개 쪼개진 배열 병합
     merge(arr, start, mid, mid+1, end);
 }
 

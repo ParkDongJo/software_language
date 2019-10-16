@@ -63,10 +63,7 @@ function changeDateFormat2(dates) {
 
 
     dates.forEach(date => {
-        // date = new Date(e);
-        if (date.indexOf('/') == -1 && date.indexOf('-') == -1) return;
         if (!pattern1.test(date) && !pattern2.test(date) && !pattern3.test(date)) return;
-
 
         tmp = date.split(new RegExp(separators, 'g'))
                 .sort((a,b) => {
