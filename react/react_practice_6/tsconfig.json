@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+        "target": "ES2017",
+
+        // module 설정 //
+        "module": "CommonJS",                   // 모듈 설정
+        "moduleResolution": "node",             // 모듈 (검색)해석 방식 설정
+        "allowSyntheticDefaultImports": true,   // export default 를 export 한 값들을 가지는 객체로 설정
+        "esModuleInterop": true,                // https://
+
+        // React //
+        "jsx": "react", // jsx 지원
+        "jsxFactory": "React.createElement", // jsx 팩토리 함수 설정,
+
+        // JS //
+        "allowJs": false, // 자바스크립트 파일 컴파일 허용 여부. 
+        "checkJs": false, // allowJs 옵션이 true여서 js파일 모듈을 사용시 js파일의 오류 검사 여부
+        // "maxNodeModuleJsDepth": 0, // js 모듈을 검색할 최대 깊이
+
+        // edit outfile //
+        "noEmit": false, // 결과파일을 저장하지 않음
+
+        // Lint //
+        "strict": true, // 모든 엄격한 타입 검사 옵션을 활성화
+
+        // etc //
+        "skipLibCheck": false, // 모든 선언파일(*.d.ts)의 유형검사를 건너뛸지 여부
+
+        // 직역: 파일 이름에 일관된 casing 강제 적용
+        "forceConsistentCasingInFileNames": false, // 파일명에 대소문자 구분하지 않아도 되는 기능 사용 여부
+        
+        // "isolatedModules": false, // @TODO 뭘까...
+    }
+}
